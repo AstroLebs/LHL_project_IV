@@ -1,7 +1,5 @@
 # Mini-project IV
 
-### [Assignment](assignment.md)
-
 ## Project/Goals
 For this project, I wanted to focus on building, grid-searching, and testing an entire pipeline along with integrating Docker into my AWS instance.
 
@@ -24,6 +22,7 @@ Looking at the correlation matrix of our feature we see a positive correlation b
 
 ### Proof of Concept Pipeline
 [Simple Model Notebook](notebooks/Simple_Model.ipynb)
+
 After preforming my EDA, I created an extremely simple pipeline that allowed me to "fail fast and fail early." I wanted to make sure I had a proof of concept regarding pipelines and flask before moving on with the project. To do this, I did the following:
 
   1. Dropped all non-quantitative features from the dataset
