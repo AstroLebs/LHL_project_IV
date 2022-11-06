@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV, cross_val_score, train_test_split
-from modules import build_pipeline, model_test
+from modules import build_pipeline
 import pickle
 import constants
 
@@ -20,10 +20,11 @@ def main():
 
     print(cross_val_score(pipe, X_train, y_train, cv=10, scoring="accuracy").mean())
 
-    grid = GridSearchCV(pipe, constants.params, cv=10, scoring="accuracy")
+    grid = GridSearchCV(pipe, constants.params, cv=10, scoring="accuracy", verbose=3)
     grid.fit(X_train, y_train)
 
     print(grid.best_score_)
+    print(grid.best_params_)
 
     model = grid.best_estimator_
 
