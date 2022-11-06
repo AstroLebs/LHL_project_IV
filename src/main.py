@@ -7,6 +7,9 @@ import constants
 
 
 def main():
+    """
+    Runs pipeline and saves the best estimator as found by GridSearchCV as a pickle
+    """
     df = pd.read_csv("data/data.csv")
 
     X = df.drop("Loan_Status", axis=1)
