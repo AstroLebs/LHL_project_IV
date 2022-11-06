@@ -10,8 +10,8 @@ api = Api(app)
 model = pickle.load(open("../data/pickles/model.p", "rb"))
 
 
-@app.route("/predict")
-def post(self):
+@app.route("/predict", methods=["POST"])
+def predict():
     json_data = request.get_json()
     df = pd.DataFrame(json_data.values(), index=json_data.keys()).transpose()
     res = model.predict(df)
