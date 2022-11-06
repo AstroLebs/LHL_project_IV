@@ -6,12 +6,22 @@ from sklearn.impute import IterativeImputer, KNNImputer, SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, PolynomialFeatures, StandardScaler
 import constants
+import pandas as pd
 
 
 class build:
-    def __init__(self, data, target, droplist=None):
+    """
+    Class to help build and maintain pipelines
+    """
+
+    def __init__(self, data: pd.DataFrame(), droplist: list(str) = None):
+        """
+        Initiate class
+        :params:
+        data (pandas.Dataframe): Dataset that will be used to train the model on. Used to find feature types
+        droplist (list of strings): List of columns found in data that will not be used in model training
+        """
         self.data = data if droplist is None else data.drop(droplist, axis=1)
-        self.target = target.str.strip().eq("Y").mul(1)
         self.categorical_features = data.select_dtypes(
             exclude="number"
         ).columns.tolist()
@@ -21,6 +31,9 @@ class build:
         self.pipe = None
 
     def build_preprocessor(self):
+        """
+        Set up the preprocessing pipeline with seperate pipes for categorical and quantitative features
+        """
         cat_trans = Pipeline(
             steps=[
                 ("encoder", OneHotEncoder(handle_unknown="ignore", sparse=False)),
@@ -46,10 +59,10 @@ class build:
 
         return preprocessor
 
-    def get_classifier(self, key):
-        return self.models[key]
-
     def complete_pipeline(self):
+        """
+        Connects preprocessing pipeline to dimensionality reduction and classifier
+        """
         clf1 = RandomForestClassifier(random_state=constants.random_state)
         pipe = Pipeline(
             [

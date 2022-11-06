@@ -49,9 +49,9 @@ Have built a pipeline to clean and encode the data I then looked to include the 
 Have found my model, I saved it as a pickle which, along with a flask API, I uploaded to an EC2 AWS instance. Afterwards, I looked to place them within a Docker container. I was able to get this to work with middling success.
 
 ### Testing
-Using kfold testing (K = 10) my model was accurate to PLACEHOLDER.
+Using kfold testing (K = 5) my model was accurate at predicting loan approval to ~75%.
 
-My model was also able to accurately find true positives but had issues with false negatives. With this in mind, I believe this model would work best for a bankwith a more conservative outlook towards handing out loans. One that valued handing out fewer but safer loans against a greater number of riskier ones.
+My model was able to accurately find true positives but had issues with false negatives. With this in mind, I believe this model would work best for a bankwith a more conservative outlook towards handing out loans. One that valued handing out fewer but safer loans against a greater number of riskier ones.
 
 ![Confusion Matrix](images/confusion%20matrix.png)
 
